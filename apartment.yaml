@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: Reservation API
+  description: API description to make reservation in Airbnb.
+paths:
+  /devices:
+    get:
+      description: Return accomodation data
+      responses:
+        '200':
+          description: A JSON array of apartment location.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/locationInfo'
+    post:
+      description: Create a reservation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        '200':
+          description: Reservation successfully added
+          
+    patch:
+      description: Update booking data
+      responses:
+        '200':
+          description: Booking sucessfully done
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+           
+components:
+  schemas:
+    locationInfo:
+      type: object
+      properties: 
+        Location:
+          type: string
+          example: "Andreskatu 15" 
+        locationId:
+          type: string
+          example: "herman333"
+        Rooms:
+          type: number
+          example: 2
+        Accommodates:
+          type: number
+          example: 2
+        Beds:
+         type: number
+         example: 2
+        price:
+          type: integer
+          example: 200
+    Booking :
+      type: object
+      properties:
+        checkIn:
+          type: number
+        checkOut:
+          type: number
+        numberOfpeople:
+          type: number
+        totalFee:
+          type: integer
+        requestToBook:
+          type: boolean 
+    Reservation:
+      type: object
+      properties: 
+        reservationId:
+          type: string
+          example: "123gfdhg33" 
+        reservationInfo:
+          type: string
+          example: "The reservation is done for 2 days"
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/TIWARISAPANA009/Api_reservation/1.0.0
